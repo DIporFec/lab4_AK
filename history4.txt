@@ -1,0 +1,40 @@
+    1  history -w
+    2  history -w
+    3  history
+    4  mkdir ~/lab4
+    5  cd ~/lab4/
+    6  nano hello.c
+    7  nano Makefile
+    8  export KDIR=$HOME/repos/linux-stable
+    9  $KDIR/scripts/checkpath.pl -f hello.c
+   10  $KDIR/scripts/checkpatch.pl -f hello.c
+   11  make
+   12  cd ~/repos/linux-stable/lab4
+   13  make
+   14  cd lab4
+   15  cd ~/lab4
+   16  nano Makefile
+   17  make
+   18  ls
+   19  mv hello.ko ~/repos/busybox/_install
+   20  ls
+   21  cd ~/repos/busybox/_install
+   22  ls
+   23  find . | cpio -o -H newc | gzip > ../rootfs.cpio.gz
+   24  cd ~/repos/busybox
+   25  qemu-system-arm -kernel _install/boot/zImage -initrd rootfs.cpio.gz -machine virt -nographic -m 512 --append "root=/dev/ram0 rw console=ttyAMA0,115200 mem=512M"
+   26  hystory
+   27  history
+
+
+    1  insmod hello.ko
+    2  insmod hello.ko print_count=0 
+    3  insmod hello.ko print_count=7 
+    4  rmmod hello.ko 
+    5  insmod hello.ko print_count=0 
+    6  rmmod hello.ko 
+    7  insmod hello.ko print_count=7 
+    8  rmmod hello.ko 
+    9  insmod hello.ko print_count=20 
+   10  modinfo hello.ko 
+   11  poweroff 
